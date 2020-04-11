@@ -1,31 +1,32 @@
-//variables:
-const m = moment();
 
-let words;
-let hourInfo;
 
-// Current day in header:
-console.log(m.format("dddd, MMMM Do"));
 
-$("#currentDay").text(m.format("dddd, MMMM Do"));
 
-// functions:
+// calling in moment to be used in several places
+var m = moment();
+
+// variables for on save button click 
+var words;
+var hourInfo;
+
+console.log(m.format("MMMM Do YYYY, h:mm:ss a"));
+
+$("#currentDay").text(m.format("MMMM Do YYYY, h:mm:ss a"));
+
 
 $(document).ready( function() {
     colorChange ();
-    getText ();
+    renderText ();
 });
-// Color coding calendar:
 
 function colorChange () {
     
-    let realTime = moment().hours();
-
+    var realTime = moment().hours();
     console.log("Current Time" + realTime);
     
-    $(".note").each(function () {
-        let timeTest = parseInt($(this).attr("id"));
 
+    $(".input").each(function () {
+        var timeTest = parseInt($(this).attr("id"));
         console.log(timeTest);
         
         if (realTime > timeTest) {
@@ -44,75 +45,46 @@ function colorChange () {
     });
 }
 
-// Save buttons:
+
 $(".saveBtn").click(function() {
-    words = $(this).siblings(".note").val();
+    words = $(this).siblings(".input").val();
     console.log(words);
     hourInfo = $(this).siblings(".hour").text();
     console.log(hourInfo);
     localStorage.setItem(hourInfo, JSON.stringify(words));
     
     colorChange ();
-    getText ();
+    renderText ();
 })
 
-function getText () {
-  let saveText9 = JSON.parse(localStorage.getItem("9:00am"));
-  $("#9").val("");
-  $("#9").val(saveText9);
-  
-  let saveText10 = JSON.parse(localStorage.getItem("10:00am"));
-  $("#10").val("");
-  $("#10").val(saveText10);
-  
-  let saveText11 = JSON.parse(localStorage.getItem("11:00am"));
-  $("#11").val("");
-  $("#11").val(saveText11);
-  
-  let saveText12 = JSON.parse(localStorage.getItem("12:00pm"));
-  $("#12").val("");
-  $("#12").val(saveText12);
-  
-  let saveText1 = JSON.parse(localStorage.getItem("1:00pm"));
-  $("#13").val("");
-  $("#13").val(saveText1);
-  
-  let saveText2 = JSON.parse(localStorage.getItem("2:00pm"));
-  $("#14").val("");
-  $("#14").val(saveText2);
-  
-  let saveText3 = JSON.parse(localStorage.getItem("3:00pm"));
-  $("#15").val("");
-  $("#15").val(saveText3);
-  
-  let saveText4 = JSON.parse(localStorage.getItem("4:00pm"));
-  $("#16").val("");
-  $("#16").val(saveText4);
-  
-  let saveText5 = JSON.parse(localStorage.getItem("5:00pm"));
-  $("#17").val("");
-  $("#17").val(saveText5);
 
-
-
-
-  //// Save data to the current local store
-  // localStorage.setItem("username", "John");
-
-  // Access some stored data
-  // alert("username = " + localStorage.getItem("username"));
-  
-  //var cat = localStorage.getItem('myCat');
-
-  // Clear all items
-  // localStorage.clear();
-
-
-  //nction style (number){
-    let saveText4 = JSON.parse(localStorage.getItem('4:00p'));
-    $('#'+number).val('');
-    $('#'+number).val(saveText4);
-
-  
+function renderText () {
+    var saveWords9 = JSON.parse(localStorage.getItem("9:00 am"));
+    $("#9").val("");
+    $("#9").val(saveWords9);
+    var saveWords10 = JSON.parse(localStorage.getItem("10:00 am"));
+    $("#10").val("");
+    $("#10").val(saveWords10);
+    var saveWords11 = JSON.parse(localStorage.getItem("11:00 am"));
+    $("#11").val("");
+    $("#11").val(saveWords11);
+    var saveWords12 = JSON.parse(localStorage.getItem("12:00 pm"));
+    $("#12").val("");
+    $("#12").val(saveWords12);
+    var saveWords1 = JSON.parse(localStorage.getItem("1:00 pm"));
+    $("#13").val("");
+    $("#13").val(saveWords13);
+    var saveWords2 = JSON.parse(localStorage.getItem("2:00 pm"));
+    $("#14").val("");
+    $("#14").val(saveWords14)
+    var saveWords3 = JSON.parse(localStorage.getItem("3:00 pm"));
+    $("#15").val("");
+    $("#15").val(saveWords15)
+    var saveWords4 = JSON.parse(localStorage.getItem("4:00 pm"));
+    $("#16").val("");
+    $("#16").val(saveWords16)
+    var saveWords5 = JSON.parse(localStorage.getItem("5:00 pm"));
+    $("#17").val("");
+    $("#17").val(saveWords17)
 }
 
